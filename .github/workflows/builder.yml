@@ -27,7 +27,7 @@ jobs:  # workflow中的job
       - name: Build And Push Docker image
         env:
           # 指定自己的仓库地址
-          docker_repo: firekylin93/test-docker-image
+          docker_repo: firekylin93
           # 指定镜像名称
           image_name: first-docker-image
           # 指定镜像标签
