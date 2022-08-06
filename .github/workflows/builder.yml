@@ -24,9 +24,18 @@ jobs:  # workflow中的job
           username: ${{ secrets.DOCKERHUB_USERNAME }}  # 配置dockerhub的认证，在Github项目主页 【Settings】 -> 【Secrets】 添加对应变量
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v2 # docker build & push
-        with:
-          context: ../
-          push: true
-          tags: firekylin/latest
+      - name: Build And Push Docker image
+        env:
+          # 指定自己的仓库地址
+          docker_repo: firekylin1993/docker-build-wf
+          # 指定镜像名称
+          image_name: first-docker-image
+          # 指定镜像标签
+          tag: latest
+        run: | 
+          # 查看docker 版本
+          docker version
+          # 使用Dockerfile构建镜像
+          docker build . -f Dockerfile -t $docker_repo/$image_name:$tag
+          # 推送镜像到镜像仓库
+          docker push $docker_repo/$image_name:$tag
