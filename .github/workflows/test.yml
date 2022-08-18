@@ -8,9 +8,11 @@ on:   # 配置触发workflow的事件
       - 'v*'
 
 jobs:
-  build:
+  my_build_job:  # job的名字
     runs-on: ubuntu-latest
     steps:
       - name: run
         run: |
           docker version
+          docker pull firekylin93/go-app:latest
+          docker run -it -p 8080:8080 firekylin93/go-app:latest /bin/echo "hello world"
