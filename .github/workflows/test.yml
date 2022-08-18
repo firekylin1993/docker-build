@@ -1,0 +1,19 @@
+name: Go Run Test
+
+on:   # 配置触发workflow的事件
+  push:
+    branches:   # master分支有push时触发此workflow
+      - 'master'
+    tags:       # tag更新时触发此workflow
+      - 'v*'
+      
+ jobs:
+  build:
+    runs-on: firekylin93/go-app:latest
+    step:
+      - name: run
+        run: |
+          go version
+          app -name "firekylin"
+          
+        
