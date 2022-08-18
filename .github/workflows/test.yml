@@ -16,3 +16,4 @@ jobs:
           docker version
           docker pull firekylin93/go-app:latest
           docker run -i firekylin93/go-app:latest /bin/echo "hello world"
+          docker exec firekylin93/go-app:latest /bin/bash -c "go test -v "app -name firekylin"
