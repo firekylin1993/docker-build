@@ -14,6 +14,6 @@ jobs:
       - name: run
         run: |
           docker pull firekylin93/go-app:latest
-          docker run -it firekylin93/go-app
+          docker run -i --name go-app firekylin93/go-app
           docker ps -a
-          docker exec firekylin93/go-app /bin/bash -c "app -name firekylin"
+          docker exec go-app /bin/bash -c "app -name firekylin"
