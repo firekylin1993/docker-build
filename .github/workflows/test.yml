@@ -6,14 +6,11 @@ on:   # 配置触发workflow的事件
       - 'master'
     tags:       # tag更新时触发此workflow
       - 'v*'
-      
- jobs:
+
+jobs:
   build:
-    runs-on: firekylin93/go-app:latest
-    step:
+    runs-on: ubuntu-latest
+    steps:
       - name: run
         run: |
-          go version
-          app -name "firekylin"
-          
-        
+          docker version
