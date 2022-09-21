@@ -16,6 +16,10 @@ jobs:
     runs-on: ubuntu-latest   # job运行的基础环境
 
     steps:  # 一个job由一个或多个step组成
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m%d')"
+
       - name: Check out the repo
         uses: actions/checkout@v2   # 官方的action，获取代码
 
@@ -42,4 +46,4 @@ jobs:
           # 推送镜像到镜像仓库
           docker push $docker_repo/$image_name:$tag
       - name: Get pre step result output image_pull_url
-        run: echo "The time was ${{ steps.buildAndPushImage.outputs.image_pull_url }}"
+        run: echo "The time was ${{ steps.date.outputs.date }}"
