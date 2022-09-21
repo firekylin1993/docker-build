@@ -26,6 +26,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build And Push Docker image
+        id: buildAndPushImage
         env:
           # 指定自己dockerhub用户名（不要动）
           docker_repo: firekylin93
@@ -40,3 +41,5 @@ jobs:
           docker build . -f Dockerfile -t $docker_repo/$image_name:$tag
           # 推送镜像到镜像仓库
           docker push $docker_repo/$image_name:$tag
+      - name: Get pre step result output image_pull_url
+        run: echo "The time was ${{ steps.buildAndPushImage.outputs.image_pull_url }}"
